@@ -32,8 +32,7 @@ public class HelloController {
     private Label welcomeText1;
     @FXML
     private HBox cardsContainer;
-    //C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\roi.png
-    //"C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dame.png"
+
     private List<Carte> cartes = new ArrayList<>(); // supposons que vous avez une liste de carts
 
     private int nbCLick = 0;
@@ -50,7 +49,14 @@ public class HelloController {
     private Carte roib ;
     private Carte dameb ;
     private Carte valetb  ;
+    /**
 
+     Le contrôleur HelloController crée six cartes et les ajoute à une liste de cartes.
+
+     Les cartes sont créées en utilisant des images situées dans un répertoire spécifique.
+
+     Les cartes sont mélangées de manière aléatoire à la fin de la création.
+     */
     public HelloController(){
 
 
@@ -75,7 +81,13 @@ public class HelloController {
 
 
     }
-
+    /**
+     Cette méthode initialise le jeu en affichant la taille de la liste de cartes et la première carte dans la console.
+     Elle appelle également la fonction initializeTimer() pour initialiser le chronomètre du jeu.
+     Ensuite, pour chaque carte dans la liste de cartes, elle crée une ImageView contenant l'image de la carte à partir de son URL, puis l'ajoute à un conteneur de cartes.
+     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     public void initialize() {
         System.out.println("intialise of : "+this.cartes.size()+ " "+this.cartes.get(0));
         initializeTimer(); // appel de la fonction initializeTimer()
@@ -87,11 +99,23 @@ public class HelloController {
         }
     }
 
-
+    /**
+     Cette méthode est associée à l'événement de clic sur un bouton "Hello". Lorsque ce bouton est cliqué, cette méthode appelle la méthode "reload()" pour recharger les données de l'application.
+     @exception Exception est levée si une erreur se produit lors de l'exécution de la méthode "reload()".
+     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     @FXML
     protected void onHelloButtonClick() throws  Exception{
         reload();
     }
+
+    /**
+     Cette méthode recharge la vue principale de l'application. Elle crée une nouvelle scène à partir du fichier FXML "hello-view.fxml" et la définit comme racine de la scène actuelle.
+     Si une exception est levée lors de la tentative de rechargement de la vue, un message d'erreur est affiché dans la console.
+     @throws Exception si une exception est levée lors de la tentative de rechargement de la vue principale.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     public  void reload() throws Exception{
         try {
             Scene scene = root.getScene();
@@ -102,6 +126,14 @@ public class HelloController {
 
     }
 
+
+    /**
+
+     Cette méthode est appelée lorsqu'une image est cliquée. Elle vérifie le nombre de clics effectués sur l'image, ainsi que l'identifiant de l'image.
+     Si l'identifiant correspond à une carte dans la liste des cartes, la carte est ajoutée à une liste de cartes sélectionnées. Si deux cartes ont été sélectionnées, la méthode redémarre le chronomètre du jeu et vérifie si les deux cartes sélectionnées correspondent. Si elles correspondent, le joueur a gagné la partie.
+     @param event Un événement de souris qui contient des informations sur l'événement de clic.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     public void imageClicked(MouseEvent event) {
 
         monImage = (ImageView) event.getSource();
@@ -163,7 +195,12 @@ public class HelloController {
             }
         }
     }
-
+    /**
+     Cette méthode appel  la méthode resetCards() après une seconde de délai.
+     La méthode resetCards() réinitialise le nombre de clics à zéro et remet toutes les cartes dans leur état initial.
+     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     public void restartGameTime() {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -173,7 +210,13 @@ public class HelloController {
             }
         }, 1000);
     }
-
+    /**
+     Cette méthode réinitialise le nombre de clics à zéro et remet toutes les cartes dans leur état initial.
+     Elle parcourt la liste de cartes et appelle la méthode setMyImage() pour chacune d'entre elles.
+     Enfin, elle vide la liste de cartes pour les prochains cliques
+     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     private void resetCards() {
         nbCLick = 0 ;
         for (int i = 0; i < ListeCarte.size(); i++) {
@@ -183,7 +226,12 @@ public class HelloController {
     }
 
 
-
+    /**
+     Cette méthode vérifie si les deux premières cartes de la liste de cartes ont le même nom. Si c'est le cas, elle ajoute un point au score, affiche le score et supprime les deux cartes de la liste.
+     Si toutes les cartes ont été supprimées de la liste, elle affiche "IS WINNER" dans le texte d'accueil.
+     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     public void isWin(){
         Carte c0 = ListeCarte.get(0);
         Carte c1 = ListeCarte.get(1);
@@ -201,7 +249,16 @@ public class HelloController {
         }
     }
 
+    /**
 
+     Cette méthode permet de supprimer deux cartes du jeu. Elle effectue une boucle infinie tant que l'une ou les deux cartes sont présentes dans la liste de cartes.
+     Elle vérifie si les cartes c0 et c1 sont présentes dans la liste, puis parcourt la liste pour trouver chaque carte et la supprimer en utilisant la méthode remove().
+     Si une carte ne peut pas être supprimée, la méthode appelle récursivement deleteCarte(c0, c1) pour essayer de supprimer à nouveau les cartes.
+     Si les deux cartes ont été supprimées avec succès, la méthode appelle clear() pour réinitialiser le jeu.
+     @param c0 : La première carte à supprimer du jeu.
+     @param c1 : La deuxième carte à supprimer du jeu.
+     @return Cette méthode ne retourne aucune valeur.
+     */
     public void deleteCarte( Carte c0, Carte c1 ){
 
         while (true ) {
