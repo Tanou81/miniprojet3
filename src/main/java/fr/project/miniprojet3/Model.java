@@ -3,7 +3,7 @@ package fr.project.miniprojet3;
 public class Model {
     private int score ;
     private int temps ;
-
+    private HelloController helloController;
     private Carte roi ;
     private Carte dame ;
     private Carte dos  ;
@@ -13,11 +13,12 @@ public class Model {
     donne objet metier
     de cartes et la logique pour vérifier si
 les cartes sont assorties ou non*/
-    public Model(){
-        this.roi = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG");
-        this.dame = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dame.PNG");
-        this.valet = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\valet.PNG");
-        this.dos = new Carte("dos", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG");
+    public Model(HelloController helloController){
+        this.helloController =  helloController;
+        this.roi = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG",  this.helloController, "roi1" );
+        this.dame = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dame.PNG",  this.helloController, "dame1");
+        this.valet = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\valet.PNG",  this.helloController, "valet1");
+        this.dos = new Carte("dos", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG", this.helloController , "dos1");
     }
 
     public Carte getDame() {

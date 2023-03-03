@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="546.0" prefWidth="616.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.project.miniprojet3.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <HBox fx:id="cardsContainer" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <ImageView fx:id="roi1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="dame2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="dame1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
+            </image>
+         </ImageView>
+
+         <ImageView fx:id="roi2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="valet1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="valet2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
+            </image>
+         </ImageView>
+      </children>
+   </HBox>
+   <Label fx:id="welcomeText1" />
+    <Label fx:id="welcomeText" >nombre de point eest : </Label>
+    <Button onAction="#onHelloButtonClick" text="Hello!" textFill="#d40a0a" />
+
+</VBox>

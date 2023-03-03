@@ -12,38 +12,9 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <HBox prefHeight="100.0" prefWidth="200.0">
+   <HBox fx:id="cardsContainer" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <ImageView fx:id="roi1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
-            </image>
-         </ImageView>
-         <ImageView fx:id="dame2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
-            </image>
-         </ImageView>
-         <ImageView fx:id="dame1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
-            </image>
-         </ImageView>
-         <ImageView fx:id="roi2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
-            </image>
-         </ImageView>
-         <ImageView fx:id="valet1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
-            </image>
-         </ImageView>
-         <ImageView fx:id="valet2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#imageClicked" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dos.JPEG" />
-            </image>
-         </ImageView>
+
       </children>
    </HBox>
    <Label fx:id="welcomeText1" />
