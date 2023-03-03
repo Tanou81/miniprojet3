@@ -75,6 +75,10 @@ public class Carte {
         });
         //this.myimageVieux.getOnMouseClicked();
     }
+    public void setMyImage(){
+        System.out.println("ici man ");
+        this.myimageVieux.setImage(this.myimagedos);
+    }
 
     public void setUrl() {
 

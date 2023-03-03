@@ -3,7 +3,9 @@ package fr.project.miniprojet3;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +18,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 //controleur
 public class HelloController {
@@ -27,13 +30,19 @@ public class HelloController {
     //"C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dame.png"
     private List<Carte> cartes = new ArrayList<>(); // supposons que vous avez une liste de carts
 
+    @FXML
+    private VBox root;
+
 
     private int nbCLick = 0;
-    private ArrayList<ImageView> listeImage = new ArrayList<ImageView>();
+
     private Image imageDos = new Image("C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG");
 
     private int point = 0 ;
-    private ArrayList<Carte> listeImage2 = new ArrayList<Carte>();
+    private ArrayList<Carte> ListeCarte = new ArrayList<Carte>();
+
+
+
     private Carte roi ;
     private Carte dame ;
     private Carte dos  ;
@@ -49,7 +58,6 @@ public class HelloController {
         this.roi = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG",  this, "roi1" );
         this.dame = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dame.PNG",  this, "dame1");
         this.valet = new Carte("valet", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\valet.PNG",  this, "valet1");
-
 
         this.roib = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG",  this, "roi2" );
         this.dameb = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dame.PNG",  this, "dame2");
@@ -80,9 +88,22 @@ public class HelloController {
         }
     }
 
+
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("number of point is :  "+ point);
+    protected void onHelloButtonClick() throws  Exception{
+        //welcomeText.setText("number of point is :  "+ point);
+        //this = new HelloController();
+       // HelloApplication l = new HelloApplication();
+        reload();
+    }
+    public  void reload() throws Exception{
+        try {
+            Scene scene = root.getScene();
+            scene.setRoot(FXMLLoader.load(this.getClass().getResource("hello-view.fxml")));
+        }catch ( Exception e ){
+System.out.println("erro"+e);
+        }
+
     }
 
     public void imageClicked(MouseEvent event) {
@@ -92,17 +113,17 @@ public class HelloController {
         System.out.println("Clicked " + monImage);
         System.out.println("Clicked " + id + " "+ nbCLick);
         nbCLick += 1;
-        listeImage.add(monImage);
+
         String id2 = "";
-        if (listeImage2.size()>0) {
-            id2 = listeImage2.get(0).getId();
+        if (ListeCarte.size()>0) {
+            id2 = ListeCarte.get(0).getId();
             if(id2==id) {
                 nbCLick = 1;
             }
         }
         if (nbCLick<3 && id2!=id  ) {
             if (id.equals("roi1") || id.equals("roi2")) {
-                listeImage2.add(id.equals("roi1") ? this.roi : this.roib);
+                ListeCarte.add(id.equals("roi1") ? this.roi : this.roib);
                 System.out.println(" is roi");
                 System.out.println(monImage.getImage());
                 Image image = monImage.getImage();
@@ -113,26 +134,26 @@ public class HelloController {
                 monImage.setImage(this.roi.getMyimage());
 
             } else if (id.equals("dame1") || id.equals("dame2")) {
-                listeImage2.add(id.equals("dame1") ? this.dame : this.dameb);
+                ListeCarte.add(id.equals("dame1") ? this.dame : this.dameb);
 
-                System.out.println(" is dame "+ listeImage2.toString());
+                System.out.println(" is dame "+ ListeCarte.toString());
                 System.out.println(monImage.getImage());
                 Image image = monImage.getImage();
                 String imageUrl = image.getUrl();
-                //listeImage.add(image);
+
 
                 System.out.println("Image URL: " + imageUrl);
                 monImage.setImage(this.dame.getMyimage());
 
 
             } else if (id.equals("valet1") || id.equals("valet2")) {
-                listeImage2.add(id.equals("valet1") ? this.valet : this.valetb);
+                ListeCarte.add(id.equals("valet1") ? this.valet : this.valetb);
 
                 System.out.println(" is valet ");
                 System.out.println(monImage.getImage());
                 Image image = monImage.getImage();
                 String imageUrl = image.getUrl();
-                //listeImage.add(image);
+
 
                 System.out.println("Image URL: " + imageUrl);
                 monImage.setImage(this.valet.getMyimage());
@@ -162,17 +183,18 @@ public class HelloController {
     }
 
     private void resetCards() {
-        System.out.println(" taille liste image 2 "+ listeImage.size());
-        nbCLick = 0 ;
-        for (int i = 0; i < listeImage.size(); i++) {
 
-            Image image = listeImage.get(i).getImage();
-            System.out.println(" taille liste image 2 "+ listeImage.get(i).getImage());
-            String imageUrl = image.getUrl();
-            listeImage.get(i).setImage(imageDos);
+        nbCLick = 0 ;
+
+
+        for (int i = 0; i < ListeCarte.size(); i++) {
+
+
+            ListeCarte.get(i).setMyImage();
+
         }
-        listeImage.clear();
-        listeImage2.clear();
+
+        ListeCarte.clear();
 
     }
 
@@ -182,8 +204,8 @@ public class HelloController {
 
 
     public void isWin(){
-        Carte c0 = listeImage2.get(0);
-        Carte c1 = listeImage2.get(1);
+        Carte c0 = ListeCarte.get(0);
+        Carte c1 = ListeCarte.get(1);
         if (c1.getNom() == c0.getNom()){
             point +=1 ;
             System.out.println("wen ? "+ c0.getNom()+ " "+ c1.getNom() + " " + point);
