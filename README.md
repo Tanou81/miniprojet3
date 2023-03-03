@@ -12,7 +12,8 @@ et vérifier s’il s’agit d’une paire assortie ou non.
 Si elles ne sont pas assorties, elles doivent être retournées face cachée.
 — Le jeu doit se terminer lorsque toutes les paires de cartes ont été trouvées
 — Le jeu doit avoir un système de score, qui augmente à chaque paire assortie trouvée 
-
+— Le jeu doit avoir un système de score, qui  diminue à chaque tentative de sélection de cartes non
+assorties.
 
 b ) ce qui marche pas
  
@@ -22,8 +23,7 @@ b ) ce qui marche pas
 images ou des icônes pour les cartes.
 
 — Le jeu doit se terminer lorsque toutes le temps imparti est écoulé.
-— Le jeu doit avoir un système de score, qui  diminue à chaque tentative de sélection de cartes non
-assorties.
+
 — Le jeu doit avoir un compteur de temps qui diminue à mesure que le
 temps imparti s’écoule.
 — Le jeu doit avoir différents niveaux de difficulté, avec un nombre croissant
