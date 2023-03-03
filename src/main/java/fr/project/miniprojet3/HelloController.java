@@ -20,7 +20,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-//controleur
+/**
+
+        La classe HelloController est un contrôleur qui
+        Elle est responsable de la gestion des actions utilisateur et de l'interaction entre la vue et le modèle de l'application.
+        */
 public class HelloController {
     @FXML
     private Label welcomeText;
@@ -85,7 +89,7 @@ public class HelloController {
      Cette méthode initialise le jeu en affichant la taille de la liste de cartes et la première carte dans la console.
      Elle appelle également la fonction initializeTimer() pour initialiser le chronomètre du jeu.
      Ensuite, pour chaque carte dans la liste de cartes, elle crée une ImageView contenant l'image de la carte à partir de son URL, puis l'ajoute à un conteneur de cartes.
-     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @param aucun paramètre n'est nécessaire pour cette méthode.
      @return Cette méthode ne retourne aucune valeur.
      */
     public void initialize() {
@@ -102,7 +106,7 @@ public class HelloController {
     /**
      Cette méthode est associée à l'événement de clic sur un bouton "Hello". Lorsque ce bouton est cliqué, cette méthode appelle la méthode "reload()" pour recharger les données de l'application.
      @exception Exception est levée si une erreur se produit lors de l'exécution de la méthode "reload()".
-     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @param aucun paramètre n'est nécessaire pour cette méthode.
      @return Cette méthode ne retourne aucune valeur.
      */
     @FXML
@@ -198,7 +202,7 @@ public class HelloController {
     /**
      Cette méthode appel  la méthode resetCards() après une seconde de délai.
      La méthode resetCards() réinitialise le nombre de clics à zéro et remet toutes les cartes dans leur état initial.
-     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @param aucun paramètre n'est nécessaire pour cette méthode.
      @return Cette méthode ne retourne aucune valeur.
      */
     public void restartGameTime() {
@@ -214,7 +218,7 @@ public class HelloController {
      Cette méthode réinitialise le nombre de clics à zéro et remet toutes les cartes dans leur état initial.
      Elle parcourt la liste de cartes et appelle la méthode setMyImage() pour chacune d'entre elles.
      Enfin, elle vide la liste de cartes pour les prochains cliques
-     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @param aucun paramètre n'est nécessaire pour cette méthode.
      @return Cette méthode ne retourne aucune valeur.
      */
     private void resetCards() {
@@ -229,7 +233,7 @@ public class HelloController {
     /**
      Cette méthode vérifie si les deux premières cartes de la liste de cartes ont le même nom. Si c'est le cas, elle ajoute un point au score, affiche le score et supprime les deux cartes de la liste.
      Si toutes les cartes ont été supprimées de la liste, elle affiche "IS WINNER" dans le texte d'accueil.
-     @param Aucun paramètre n'est nécessaire pour cette méthode.
+     @param aucun paramètre n'est nécessaire pour cette méthode.
      @return Cette méthode ne retourne aucune valeur.
      */
     public void isWin(){
@@ -242,6 +246,10 @@ public class HelloController {
             deleteCarte(c0,c1);
 
 
+        }else {
+            System.out.println("not ok #####################################");
+            point -=1 ;
+            welcomeText.setText("number of point is : "+ point);
         }
         if (this.cartes.size()==0){
             System.out.println("is WINNER ");
@@ -310,7 +318,11 @@ public class HelloController {
     //---------------------------------------------------------Timer---------------------------------------------
 
 
-    // initialiser le timer
+    /**
+
+     Initialise le timer avec un KeyFrame qui met à jour le nombre de secondes écoulées
+     toutes les secondes.
+     */
     private void initializeTimer() {
         System.out.println("intialise2");
         // Créer la timeline pour mettre à jour le timer toutes les secondes
@@ -325,16 +337,25 @@ public class HelloController {
 
     }
 
-    // Démarrer le timer
+    /**
+
+     Démarre le timer.
+     */
     public void startTimer() {
         timeline.play();
     }
 
-    // Arrêter le timer
+    /**
+
+     Arrête le timer.
+     */
     public void stopTimer() {
         timeline.stop();
     }
+    /**
 
+     Efface le contenu d'un conteneur d'images et recharge les images des cartes.
+     */
     public void clear(){
         cardsContainer.getChildren().clear();
         for (Carte carte : cartes) {

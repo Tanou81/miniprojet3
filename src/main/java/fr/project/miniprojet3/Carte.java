@@ -6,7 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.util.Objects;
+/**
 
+ La classe Carte représente une carte de jeu. Elle possède un identifiant unique, une valeur et une image associée.
+ Cette classe est utilisée pour construire le jeu
+ */
 public class Carte {
     private String  nom  ;
 
