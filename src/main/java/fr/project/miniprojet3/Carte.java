@@ -104,5 +104,9 @@ public class Carte {
                 '}';
     }
 
+    public String getId(){
+        return this.id;
+    }
+
 
 }

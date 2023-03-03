@@ -18,7 +18,7 @@
       </children>
    </HBox>
    <Label fx:id="welcomeText1" />
-    <Label fx:id="welcomeText" >nombre de point eest : </Label>
-    <Button onAction="#onHelloButtonClick" text="Hello!" textFill="#d40a0a" />
+    <Label fx:id="welcomeText" >number of point is : </Label>
+    <Button onAction="#onHelloButtonClick" text="ReStart!" textFill="#d40a0a" />
 
 </VBox>

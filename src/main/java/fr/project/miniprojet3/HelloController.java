@@ -9,10 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -44,13 +41,9 @@ public class HelloController {
     private Carte roib ;
     private Carte dameb ;
     private Carte valetb  ;
-    private Model model ;
+
     public HelloController(){
-       //this.model = new Model(this);
-        /*this.roi = this.model.getRoi();
-        this.dame = this.model.getDame();
-        this.valet = this.model.getValet();
-        this.dos = this.model.getDos();*/
+
         this.dos = new Carte("dos", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG", this , "dos1");
 
         this.roi = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG",  this, "roi1" );
@@ -70,10 +63,9 @@ public class HelloController {
 
         this.cartes.add(this.roib);
         this.cartes.add(this.valetb);
+        // Mélanger les cartes de manière aléatoire
+        Collections.shuffle(cartes);
 
-        //this.cartes.add(this.roi);
-        /*this.cartes.add(this.dame);
-        this.cartes.add(this.valet);*/
 
     }
 
@@ -90,7 +82,7 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("nombre de point is : "+ point);
+        welcomeText.setText("number of point is :  "+ point);
     }
 
     public void imageClicked(MouseEvent event) {
@@ -101,7 +93,14 @@ public class HelloController {
         System.out.println("Clicked " + id + " "+ nbCLick);
         nbCLick += 1;
         listeImage.add(monImage);
-        if (nbCLick<3) {
+        String id2 = "";
+        if (listeImage2.size()>0) {
+            id2 = listeImage2.get(0).getId();
+            if(id2==id) {
+                nbCLick = 1;
+            }
+        }
+        if (nbCLick<3 && id2!=id  ) {
             if (id.equals("roi1") || id.equals("roi2")) {
                 listeImage2.add(id.equals("roi1") ? this.roi : this.roib);
                 System.out.println(" is roi");
@@ -144,8 +143,9 @@ public class HelloController {
 
             if (nbCLick == 2) {
 
-                isWin();
+
                 restartGameTime();
+                isWin();
 
             }
         }
@@ -187,45 +187,58 @@ public class HelloController {
         if (c1.getNom() == c0.getNom()){
             point +=1 ;
             System.out.println("wen ? "+ c0.getNom()+ " "+ c1.getNom() + " " + point);
-            welcomeText.setText("nombre de point is : "+ point);
+            welcomeText.setText("number of point is : "+ point);
             deleteCarte(c0,c1);
 
 
-
+        }
+        if (this.cartes.size()==0){
+            System.out.println("is WINNER ");
+            welcomeText.setText("IS WINNER !!!!!!!!!!!!!!!!!!!!");
         }
     }
 
 public void deleteCarte( Carte c0, Carte c1 ){
+
         while (true ) {
-            if (cartes.contains(c0) && cartes.contains(c1)) {
+            System.out.println("delete carte"+ cartes.contains(c0) + " "+ cartes.contains(c1));
+            if (cartes.contains(c0) || cartes.contains(c1)) {
+
                 System.out.println("equald is " + c0.equals(c1));
                 //for (int j = 0 ; j<cartes.size();j++) {
                 for (int i = 0; i < cartes.size(); i++) {
-                    System.out.println("carte is " + cartes.get(i) + " " + c1);
+                    //System.out.println("carte is " + cartes.get(i) + " " + c1);
                     if (cartes.get(i) == c0) {
+
                         try {
-                            System.out.println("carte is ok 1" + cartes.get(i));
+                            System.out.println("carte is ok 1" + cartes.get(i)+ " "+ c0.toString());
                             cartes.remove(i);
                             System.out.println("remove is " + cartes.get(i));
-                            this.clear();
+
                         }catch (Exception e){
-                            System.out.println("error is " );
+                            this.deleteCarte(c0,c1);
+                            System.out.println("errorrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! is " +e  );
                             }
-                        deleteCarte(c0,c1);
+
+
                     } else if (cartes.get(i) == c1) {
+
                         try {
-                            System.out.println("carte is ok 2" + cartes.get(i));
+                            System.out.println("carte is ok 2" + cartes.get(i)+ " "+ c1.toString());
                             cartes.remove(i);
-                            System.out.println("remove is " + cartes.get(i));
-                            this.clear();
+                            System.out.println("remove is " + cartes.get(i)  );
+                            //this.clear();
                         }catch (Exception e){
-                            System.out.println("error is " );
+                            this.deleteCarte(c0,c1);
+                            System.out.println("errorrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! is " + e );
                         }
-                        deleteCarte(c0,c1);
+
+
                     }
                 }
                 // }
             } else {
+                this.clear();
                 break;
             }
         }
