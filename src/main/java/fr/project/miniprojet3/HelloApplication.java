@@ -11,8 +11,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 //vue
+/**
+
+ La classe HelloApplication étend la classe Application de JavaFX et représente l'application de démonstration.
+
+ Elle est responsable de la création et de l'affichage de la fenêtre principale de l'application.
+ */
 public class HelloApplication extends Application {
     public Scene scene ;
+    /**
+
+     La méthode start() est appelée lors du démarrage de l'application et crée la fenêtre principale
+     de l'application en chargeant le fichier de vue hello-view.fxml à l'aide de la classe FXMLLoader.
+     @param stage la fenêtre principale de l'application
+     @throws IOException si une erreur se produit lors du chargement du fichier de vue
+     */
     @Override
     public void start(Stage stage) throws IOException {
         Button restartButton = new Button("Relancer l'application");
@@ -23,15 +36,12 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    /*@FXML
-    protected void onHelloButtonClick() throws IOException {
-        //welcomeText.setText("number of point is :  "+ point);
-        //this = new HelloController();
-        // HelloApplication l = new HelloApplication();
-        System.out.println("click ");
-        scene.setRoot((FXMLLoader.load(getClass().getResource("hello-view.fxml"))));
-    }*/
 
+    /**
+
+     La méthode main() est la méthode principale de l'application et est appelée au lancement de l'application.
+     @param args les arguments passés à l'application
+     */
     public static void main(String[] args) {
         launch();
     }

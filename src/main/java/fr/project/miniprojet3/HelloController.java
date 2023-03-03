@@ -26,22 +26,22 @@ public class HelloController {
     private Label welcomeText;
     @FXML
     private ImageView monImage;
+    @FXML
+    private VBox root;
+    @FXML
+    private Label welcomeText1;
+    @FXML
+    private HBox cardsContainer;
     //C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\roi.png
     //"C:\Users\natha\IdeaProjects\miniprojet3\src\main\mesImages\dame.png"
     private List<Carte> cartes = new ArrayList<>(); // supposons que vous avez une liste de carts
 
-    @FXML
-    private VBox root;
-
-
     private int nbCLick = 0;
-
-    private Image imageDos = new Image("C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG");
 
     private int point = 0 ;
     private ArrayList<Carte> ListeCarte = new ArrayList<Carte>();
-
-
+    private Timeline timeline;
+    private int timeSeconds = 0;
 
     private Carte roi ;
     private Carte dame ;
@@ -53,7 +53,6 @@ public class HelloController {
 
     public HelloController(){
 
-        this.dos = new Carte("dos", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG", this , "dos1");
 
         this.roi = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG",  this, "roi1" );
         this.dame = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dame.PNG",  this, "dame1");
@@ -62,7 +61,7 @@ public class HelloController {
         this.roib = new Carte("roi", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\roi.PNG",  this, "roi2" );
         this.dameb = new Carte("dame", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dame.PNG",  this, "dame2");
         this.valetb = new Carte("valet", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\valet.PNG",  this, "valet2");
-        //this.dos = new Carte("dos", "C:\\Users\\natha\\IdeaProjects\\miniprojet3\\src\\main\\mesImages\\dos.JPEG", this , "dos2");
+
         this.cartes.add(this.dameb);
 
         this.cartes.add(this.roi);
@@ -91,9 +90,6 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() throws  Exception{
-        //welcomeText.setText("number of point is :  "+ point);
-        //this = new HelloController();
-       // HelloApplication l = new HelloApplication();
         reload();
     }
     public  void reload() throws Exception{
@@ -101,7 +97,7 @@ public class HelloController {
             Scene scene = root.getScene();
             scene.setRoot(FXMLLoader.load(this.getClass().getResource("hello-view.fxml")));
         }catch ( Exception e ){
-System.out.println("erro"+e);
+            System.out.println("error"+e);
         }
 
     }
@@ -161,13 +157,9 @@ System.out.println("erro"+e);
 
             }
 
-
             if (nbCLick == 2) {
-
-
                 restartGameTime();
                 isWin();
-
             }
         }
     }
@@ -183,23 +175,12 @@ System.out.println("erro"+e);
     }
 
     private void resetCards() {
-
         nbCLick = 0 ;
-
-
         for (int i = 0; i < ListeCarte.size(); i++) {
-
-
             ListeCarte.get(i).setMyImage();
-
         }
-
         ListeCarte.clear();
-
     }
-
-
-
 
 
 
@@ -220,7 +201,8 @@ System.out.println("erro"+e);
         }
     }
 
-public void deleteCarte( Carte c0, Carte c1 ){
+
+    public void deleteCarte( Carte c0, Carte c1 ){
 
         while (true ) {
             System.out.println("delete carte"+ cartes.contains(c0) + " "+ cartes.contains(c1));
@@ -240,7 +222,7 @@ public void deleteCarte( Carte c0, Carte c1 ){
                         }catch (Exception e){
                             this.deleteCarte(c0,c1);
                             System.out.println("errorrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! is " +e  );
-                            }
+                        }
 
 
                     } else if (cartes.get(i) == c1) {
@@ -264,19 +246,12 @@ public void deleteCarte( Carte c0, Carte c1 ){
                 break;
             }
         }
-}
+    }
+
+
 
     //---------------------------------------------------------Timer---------------------------------------------
-    @FXML
-    private Label welcomeText1;
 
-    private Timeline timeline;
-    private int timeSeconds = 0;
-
-
-
-    @FXML
-    private HBox cardsContainer;
 
     // initialiser le timer
     private void initializeTimer() {

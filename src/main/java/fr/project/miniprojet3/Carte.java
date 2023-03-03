@@ -20,6 +20,15 @@ public class Carte {
     private String urlFace ;
     private String id ;
 
+
+    /**
+     * Constructeur de la classe Carte.
+     *
+     * @param nom              Le nom de la carte.
+     * @param url              L'URL de l'image de la carte.
+     * @param helloController  Le contrôleur de la vue.
+     * @param id               L'identifiant de la carte.
+     */
     public Carte(String nom , String url,HelloController helloController, String  id ){
         this.nom  = nom  ;
         this.urlFace = url;
@@ -32,6 +41,14 @@ public class Carte {
         this.helloController = helloController;
 
     }
+
+    /**
+     * Constructeur de la classe Carte.
+     *
+     * @param nom              Le nom de la carte.
+     * @param url              L'URL de l'image de la carte.
+     * @param helloController  Le contrôleur de la vue.
+     */
     public Carte(String nom , String url, HelloController helloController){
         this.nom  = nom  ;
         this.urlFace = url;
@@ -45,24 +62,41 @@ public class Carte {
 
     }
 
-
+    /**
+     Getter pour le nom de la carte.
+     @return nom de la carte
+     */
     public String getNom() {
         return nom;
     }
-
+    /**
+     Getter pour l'URL de l'image de la carte.
+     @return URL de l'image de la carte
+     */
     public String getUrl() {
         return urlFace;
     }
+    /**
 
+     Getter pour l'image de la carte.
+     @return image de la carte
+     */
     public Image getMyimage(){
         return myimageFace;
     }
 
+    /**
 
+     Getter pour la vue de l'image de la carte.
+     @return vue de l'image de la carte
+     */
     public ImageView getMyimageVieux(){
         return  this.myimageVieux;
     }
+    /**
 
+     Configure l'image de la carte.
+     */
     public void setImage(){
         this.myimageVieux.setFitWidth(100);
         this.myimageVieux.setFitHeight(150.0  );
@@ -75,14 +109,27 @@ public class Carte {
         });
         //this.myimageVieux.getOnMouseClicked();
     }
+    /**
+
+     Configure l'image de la carte.et change en dos
+     */
     public void setMyImage(){
         System.out.println("ici man ");
         this.myimageVieux.setImage(this.myimagedos);
     }
+    /**
 
+     Setter pour l'URL de l'image de la carte.
+     */
     public void setUrl() {
 
     }
+    /**
+
+     Vérifie si la carte est égale à un autre objet.
+     @param o l'objet à comparer
+     @return true si la carte est égale à l'objet, false sinon
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,12 +139,20 @@ public class Carte {
                 Objects.equals(urlFace, carte.urlFace) &&
                 Objects.equals(id, carte.id);
     }
+    /**
 
+     Calcule le code de hachage de la carte.
+     @return le code de hachage de la carte
+     */
     @Override
     public int hashCode() {
         return Objects.hash(nom, urlFace, id);
     }
+    /**
 
+     Overrides the default toString method to provide a String representation of the Carte object.
+     @return a String representation of the Carte object, including its name, image URL, isDo boolean value, and ID
+     */
     @Override
     public String toString() {
         return "Carte{" +
@@ -107,7 +162,11 @@ public class Carte {
                 ", id='" + id + '\'' +
                 '}';
     }
+    /**
 
+     Returns the ID of the Carte object.
+     @return the ID of the Carte object as a String
+     */
     public String getId(){
         return this.id;
     }
